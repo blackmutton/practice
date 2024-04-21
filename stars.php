@@ -151,12 +151,99 @@
     <hr>
     <br>
 
-    <h2>正三角形</h2>
+    <h2>空心菱形</h2>
     <?php
+    $n=5;
+    for($row=1;$row<$n*2;$row++){
+        if($row>$n){
+            $stars=$n*2-$row;
+        }else{
+            $stars=$row;
+        }
+        for($space=1;$space<=$n-$stars;$space++){
+            echo "&nbsp;";
+        }
+        for($col=1;$col<=$stars*2-1;$col++){
+            if($col==1||$col==$stars*2-1){
+
+                echo "*";
+            }else{
+                echo "&nbsp;";
+            }
+        }
+        echo "<br>";
+    } 
+    ?>
+    <br>
+    <hr>
+    <br>
+<h2>對角線菱形</h2>
+    <?php
+    $n=5;
+    for($row=1;$row<$n*2;$row++){
+        if($row>$n){
+            $stars=$n*2-$row;
+        }else{
+            $stars=$row;
+        }
+        for($space=1;$space<=$n-$stars;$space++){
+            echo "&nbsp;";
+        }
+        for($col=1;$col<=$stars*2-1;$col++){
+            if($col==1||$col==$stars*2-1||$col==$stars||$row==$n){
+
+                echo "*";
+            }else{
+                echo "&nbsp;";
+            }
+        }
+        echo "<br>";
+    } 
+    ?>
+    <br>
+    <hr>
+    <br>
+
+    <h2>空心正三角形</h2>
+    <?php
+    $n=5;
+    for($row=1;$row<=$n;$row++){
+        for($space=1;$space<=$n-$row;$space++){
+            echo "&nbsp;";
+        }
+        for($col=1;$col<=$row*2-1;$col++){
+            if($col==1||$col==$row*2-1||$row==$n){
+
+                echo "*";
+            }else{
+                echo "&nbsp;";
+            }
+        }
+        echo "<br>";
+    }
     
     ?>
     <br>
     <hr>
     <br>
+    <h2>有高的正三角形</h2>
+    <?php
+    $n=5;
+    for($row=1;$row<=$n;$row++){
+        for($space=1;$space<=$n-$row;$space++){
+            echo "&nbsp;";
+        }
+        for($col=1;$col<=$row*2-1;$col++){
+            if($col==1||$col==$row*2-1||$col==$row||$row==$n){
+
+                echo "*";
+            }else{
+                echo "&nbsp;";
+            }
+        }
+        echo "<br>";
+    }
+    
+    ?>
 </body>
 </html>
