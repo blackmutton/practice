@@ -52,6 +52,7 @@ while($target!=mb_substr($str,$position,mb_strlen($target))){
     echo "<br>";
     $position++;
 }
+echo "$target 在位置$position";
 ?>
 <h2>foreach的用法</h2>
 <?php
@@ -101,6 +102,28 @@ foreach($score as $name =>$value) {
     echo "<br>";
 }
 ?>
-
+<h2>foreach九九乘法法</h2>
+<?php
+$nine=[];
+for ($i=1; $i <=9 ; $i++) { 
+    for($j=1;$j<=9;$j++){
+         $nine[]="$i x $j = ".($i*$j);
+        
+    }
+}
+$count=1;
+foreach($nine as $value){
+    echo $value;
+    echo "&nbsp;";
+    if($count%9==0){
+        echo "<br>";
+    }
+    $count++;
+}
+echo "<br>";
+// echo "<pre>";
+print_r($nine);
+// echo "</pre>";
+?>
 </body>
 </html>
