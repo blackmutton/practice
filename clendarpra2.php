@@ -11,21 +11,10 @@
         body {
 	    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	    background-size: 400% 400%;
-	    /* animation: gradient 15s ease infinite; */
 	    height: 100vh;
+        margin:auto;
         }
 
-    @keyframes gradient {
-	    0% {
-		    background-position: 0% 50%;
-	    }
-	    50% {
-		    background-position: 100% 50%;
-	    }
-	    100% {
-		    background-position: 0% 50%;
-	    }
-    }
 
         .container{
             width:1000px;
@@ -33,12 +22,31 @@
             /* background-color:grey; */
             margin:auto;
             padding-top:20px;
+            text-align:center;
         }
+        h2{
+            width:75%;
+            text-align:center;
+        }
+        /* 表單月份欄位調整 */
+        .month{
+            width:75%;
+            text-align:center;
+            margin-bottom:10px;
+        }
+        .nav{
+            width:75%;
+            display:flex;
+            justify-content:space-around;
+            margin-bottom:10px;
+        }
+        
         .content{
             width:75%;
             height:100%;
             border:3px white double;
             background:linear-gradient(rgba(255, 255, 255, 0.5), transparent);
+            
         }
         .flex{
             width:100%;
@@ -47,6 +55,7 @@
             margin:auto;
             display:flex;
             flex-direction:row;
+            flex-wrap:wrap;
             /* border:1px black solid; */
             justify-content:space-around;
             align-items:center;
@@ -83,8 +92,64 @@
     </style>
 </head>
 <body>
+
     <div class="container">
+    <h2>萬年曆</h2>
+        <div class="month">
+            <form action="" method="get">
+            
+                <label for="month">月份：</label>
+                <input type="number" name="month" id="month" value="<?=date("m");?>">
+                <input type="submit">
+            </form>
+        </div>
+        <?php
+            // 設定當年月所在位置
+            // $_GET['month']當中的month是與input的name連動，因此若是input未設name，表單便無法吃到資料
+                $month=(isset($_GET['month']))?$_GET['month']:date("m");
+                $year=(isset($_GET['year']))?$_GET['year']:date("Y");
+                
+                $firstDay=strtotime(date("$year-$month-1"));
+                $firstWeekStartDay=date("w",$firstDay);
+                $days=date("t",$firstDay);
+                $lastDay=strtotime(date("$year-$month-$days"));
+
+                // 設立當月日期的陣列
+                $dates=[];
+                 for($i=0;$i<42;$i++){
+                    if($i>=$firstWeekStartDay && $i-$firstWeekStartDay+1<=$days){
+                        $diff=$i-$firstWeekStartDay;
+                        $dates[]=date("Y-m-d",strtotime("$diff days",$firstDay));
+                    }else{
+                        $dates[]="&nbsp;";
+                    }
+                } 
+                // 上一個月與下一個月碰到跨年時的邏輯
+                if(($month-1)<1){
+                    $prev=12;
+                    $prev_year=$year-1;
+                }else{
+                    $prev=$month-1;
+                    $prev_year=$year;
+                }
+                if(($month+1)>12){
+                    $next=1;
+                    $next_year=$year+1;
+                }else{
+                    $next=$month+1;
+                    $next_year=$year;
+                }
+            ?>
+            <!-- 月份連結 -->
+        <div class="nav">
+                <a href="clendarpra2.php?year=<?=$prev_year;?>&month=<?=$prev;?>">上個月</a>
+                <?=$year;?>年<?=$month;?>月
+                <a href="clendarpra2.php?year=<?=$next_year;?>&month=<?=$next;?>">下個月</a>
+            </div>
+            
+            <!-- 萬年曆本身 -->
         <div class="content">
+            
             <div class="flex">
                 <div class="item holiday">日</div>
                 <div class="item workday">一</div>
@@ -94,61 +159,32 @@
                 <div class="item workday">五</div>
                 <div class="item holiday">六</div>
             </div>
-            <!-- <div class="flex">
-                <div class="item holiday">1</div>
-                <div class="item workday">2</div>
-                <div class="item workday">3</div>
-                <div class="item workday">4</div>
-                <div class="item workday">5</div>
-                <div class="item workday">6</div>
-                <div class="item holiday">7</div>
-            </div>
-            <div class="flex">
-                <div class="item holiday">11</div>
-                <div class="item workday">12</div>
-                <div class="item workday">13</div>
-                <div class="item workday">14</div>
-                <div class="item workday">15</div>
-                <div class="item workday">16</div>
-                <div class="item holiday">17</div>
-            </div>
-            <div class="flex">
-                <div class="item holiday">21</div>
-                <div class="item workday">22</div>
-                <div class="item workday">23</div>
-                <div class="item workday">24</div>
-                <div class="item workday">25</div>
-                <div class="item workday">26</div>
-                <div class="item holiday">27</div>
-            </div>
-            <div class="flex">
-                <div class="item holiday">31</div>
-                <div class="item workday">32</div>
-                <div class="item workday">33</div>
-                <div class="item workday">34</div>
-                <div class="item workday">35</div>
-                <div class="item workday">36</div>
-                <div class="item holiday">37</div>
-            </div>
-            <div class="flex">
-                <div class="item holiday">41</div>
-                <div class="item workday">42</div>
-                <div class="item workday">43</div>
-                <div class="item workday">44</div>
-                <div class="item workday">45</div>
-                <div class="item workday">46</div>
-                <div class="item holiday">47</div>
-                </div>
-            <div class="flex">
-                <div class="item holiday">51</div>
-                <div class="item workday">52</div>
-                <div class="item workday">53</div>
-                <div class="item workday">54</div>
-                <div class="item workday">55</div>
-                <div class="item workday">56</div>
-                <div class="item holiday">57</div>
-            </div>
-        </div> -->
+            
+                <?php
+                $counter = 0; // 計數器初始化
+                foreach($dates as $day){
+                    if ($counter % 7 == 0) {
+                        echo "<div class='flex'>";
+                    }
+                    echo "<div class='";
+                    if($day!="&nbsp;"){
+                        $format=explode("-",$day)[2];
+                        $w=date("w",strtotime($day));
+                        if($w==0||$w==6){
+                            echo "item holiday'>$format</div>";
+                        }else{
+                            echo "item workday'>$format</div>";
+                        }
+                    } else {
+                        echo "item'></div>";
+                    }
+                    $counter++; // 計數器遞增
+                    if ($counter % 7 == 0) {
+                        echo "</div>"; // 每七天換一行
+                    }
+                }
+                ?>
     </div>
+    
 </body>
 </html>
