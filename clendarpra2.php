@@ -12,7 +12,7 @@
         body {
 	    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	    background-size: 400% 400%;
-	    height: 90vh;
+	    height: 100vh;
         margin:auto;
         }
 
@@ -26,6 +26,7 @@
             text-align:center;
         }
         h2{
+            margin:auto;
             margin-top:-15px;
             width:75%;
             text-align:center;
@@ -33,11 +34,14 @@
         }
         /* 表單月份欄位調整 */
         .month{
+            margin:auto;
             width:75%;
+            height:20px;
             text-align:center;
             margin-bottom:10px;
         }
         .nav{
+            margin:auto;
             width:75%;
             display:flex;
             justify-content:space-around;
@@ -45,6 +49,7 @@
         }
         
         .content{
+            margin:auto;
             width:75%;
             height:100%;
             border:3px white double;
@@ -53,7 +58,7 @@
         }
         .flex{
             width:100%;
-            height:13%;
+            height:14%;
             /* background-color:lightpink; */
             margin:auto;
             display:flex;
@@ -62,7 +67,7 @@
             /* border:1px black solid; */
             justify-content:space-around;
             align-items:center;
-            padding:10px 0;
+            padding:15px 0;
 
         }
         .item{
@@ -70,23 +75,29 @@
             height:70px;
             /* background-color:lightblue; */
             border:1px black dotted;
-            text-align:center;
-            padding-top:20px;
+            
+            display:flex;
+            align-items:center;
+            justify-content:space-around;
+            
             border-radius:100%;
             background:linear-gradient(to bottom right, #abe6f5 50%, white 50%);
             transition:.3s;
             font-size:24px;
+            box-shadow:2px 4px #068a71;
         }
         .holiday{
             color:red;
             background-color:lightpink;
             border:3px dotted red;
             background:linear-gradient(to bottom right, lightpink 50%, white 50%);
+            box-shadow:2px 4px #9c5656;
         }
         .workday{
             color:black;
             border:3px double black;
             background:linear-gradient(to bottom right, lightgreen 50%, white 50%);
+            box-shadow:2px 4px green;
         }
         .item:hover{
             transform:scale(1.3);
@@ -94,6 +105,7 @@
             transition:.3s;
             color:#031085;
             font-size:x-large;
+            cursor: pointer;
         }
     </style>
 </head>
