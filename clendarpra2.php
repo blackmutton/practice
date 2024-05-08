@@ -105,7 +105,8 @@
             transition:.3s;
             color:#031085;
             font-size:x-large;
-            cursor: pointer;
+            /* 需要將png轉成ico才能將鼠標更換 */
+            cursor: url('./images/marcille.ico'),pointer;
         }
     </style>
 </head>
