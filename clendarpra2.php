@@ -7,26 +7,29 @@
     <style>
         *{
             box-sizing:border-box;
+            overflow:hidden;
         }
         body {
 	    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	    background-size: 400% 400%;
-	    height: 100vh;
+	    height: 90vh;
         margin:auto;
         }
 
 
         .container{
             width:1000px;
-            height:100vh;
+            /* height:90vh; */
             /* background-color:grey; */
             margin:auto;
             padding-top:20px;
             text-align:center;
         }
         h2{
+            margin-top:-15px;
             width:75%;
             text-align:center;
+            margin-bottom:5px;
         }
         /* 表單月份欄位調整 */
         .month{
@@ -50,7 +53,7 @@
         }
         .flex{
             width:100%;
-            height:14%;
+            height:13%;
             /* background-color:lightpink; */
             margin:auto;
             display:flex;
@@ -63,24 +66,27 @@
 
         }
         .item{
-            width:100px;
-            height:100px;
+            width:70px;
+            height:70px;
             /* background-color:lightblue; */
-            border:1px black solid;
+            border:1px black dotted;
             text-align:center;
-            padding-top:40px;
+            padding-top:20px;
             border-radius:100%;
             background:linear-gradient(to bottom right, #abe6f5 50%, white 50%);
             transition:.3s;
+            font-size:24px;
         }
         .holiday{
             color:red;
             background-color:lightpink;
             border:3px dotted red;
+            background:linear-gradient(to bottom right, lightpink 50%, white 50%);
         }
         .workday{
             color:black;
             border:3px double black;
+            background:linear-gradient(to bottom right, lightgreen 50%, white 50%);
         }
         .item:hover{
             transform:scale(1.3);
