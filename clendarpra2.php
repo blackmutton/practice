@@ -118,7 +118,7 @@
             <form action="" method="get">
             
                 <label for="month">月份：</label>
-                <input type="number" name="month" id="month" value="<?=date("m");?>">
+                <input type="number" name="month" id="month" value="<?=date("m");?>" min="1" max="12">
                 <input type="submit">
             </form>
         </div>
