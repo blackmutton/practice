@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@300&family=Freeman&family=Jaro:opsz@6..72&family=Jersey+25+Charted&family=Poetsen+One&display=swap" rel="stylesheet">
     <style>
         *{
             box-sizing:border-box;
@@ -15,6 +18,14 @@
 	    height: 100vh;
         margin:auto;
         }
+
+        .poetsen-one-regular {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
 
         .container{
@@ -113,13 +124,13 @@
 <body>
 
     <div class="container">
-    <h2>萬年曆</h2>
+    <h2 class="poetsen-one-regular">Perpetual calendar</h2>
         <div class="month">
-            <form action="" method="get">
+            <form action="" method="get" class="poetsen-one-regular">
             
-                <label for="month">月份：</label>
+                <label for="month">Month：</label>
                 <input type="number" name="month" id="month" value="<?=date("m");?>" min="1" max="12">
-                <input type="submit">
+                <input type="submit" value="submit">
             </form>
         </div>
         <?php
@@ -160,10 +171,10 @@
                 }
             ?>
             <!-- 月份連結 -->
-        <div class="nav">
-                <a href="clendarpra2.php?year=<?=$prev_year;?>&month=<?=$prev;?>">上個月</a>
+        <div class="nav poetsen-one-regular">
+                <a href="clendarpra2.php?year=<?=$prev_year;?>&month=<?=$prev;?>">Previous</a>
                 <?=$year;?>年<?=$month;?>月
-                <a href="clendarpra2.php?year=<?=$next_year;?>&month=<?=$next;?>">下個月</a>
+                <a href="clendarpra2.php?year=<?=$next_year;?>&month=<?=$next;?>">Next</a>
             </div>
             
             <!-- 萬年曆本身 -->
