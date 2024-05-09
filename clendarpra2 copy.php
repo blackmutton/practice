@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@300&family=Freeman&family=Jaro:opsz@6..72&family=Jersey+25+Charted&family=Poetsen+One&display=swap" rel="stylesheet">
     <style>
         *{
             box-sizing:border-box;
-            overflow:hidden;
+            /* overflow:hidden; */
         }
         body {
 	    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -25,12 +28,10 @@
             padding-top:20px;
             text-align:center;
         }
-        h2{
-            margin:auto;
-            margin-top:-15px;
-            width:75%;
-            text-align:center;
-            margin-bottom:5px;
+        .poetsen-one-regular {
+            font-family: "Poetsen One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
         }
         /* 表單月份欄位調整 */
         .month{
@@ -105,24 +106,34 @@
             transition:.3s;
             color:#031085;
             font-size:x-large;
-            cursor: pointer;
+            cursor: url('./images/marcille.ico'),pointer;
         }
-        .special-holiday{
+        .special{
             font-size:12px;
             color:red;
+            background:linear-gradient(to bottom right, yellow 50%, white 50%);
+            box-shadow:2px 4px #a68e07;
+        }
+        .special:hover{
+            transform:scale(1.3);
+            z-index:10;
+            transition:.3s;
+            color:#031085;
+            font-size:14px;
+            cursor: url('./images/marcille.ico'),pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-    <h2>萬年曆</h2>
+<div class="container">
+    <h2 class="poetsen-one-regular">Perpetual calendar</h2>
         <div class="month">
-            <form action="" method="get">
+            <form action="" method="get" class="poetsen-one-regular">
             
-                <label for="month">月份：</label>
-                <input type="number" name="month" id="month" value="<?=date("m");?>">
-                <input type="submit">
+                <label for="month">Month：</label>
+                <input type="number" name="month" id="month" value="<?=date("m");?>" min="1" max="12">
+                <input type="submit" value="submit">
             </form>
         </div>
         <?php
@@ -136,11 +147,12 @@
                 $days=date("t",$firstDay);
                 $lastDay=strtotime(date("$year-$month-$days"));
                 // 定義特殊節日
-                $special_holidays = [
-                "1" => ["1" => "元旦"],
-                "5" => ["1" => "國際勞動節"],
+                $specialDays = [
+                "01" => ["01" => "元旦"],
+                "02" => ["07" => "但丁生日"],
+                "05" => ["01" => "國際勞動節",
+                        "04" => "文藝節"],
                 "12" => ["25" => "聖誕節"]
-                // 在這裡添加更多的特殊節日...
                 ];
                 // 設立當月日期的陣列
                 $dates=[];
@@ -169,10 +181,10 @@
                 }
             ?>
             <!-- 月份連結 -->
-        <div class="nav">
-                <a href="clendarpra2.php?year=<?=$prev_year;?>&month=<?=$prev;?>">上個月</a>
+            <div class="nav poetsen-one-regular">
+                <a href="clendarpra2.php?year=<?=$prev_year;?>&month=<?=$prev;?>">Previous</a>
                 <?=$year;?>年<?=$month;?>月
-                <a href="clendarpra2.php?year=<?=$next_year;?>&month=<?=$next;?>">下個月</a>
+                <a href="clendarpra2.php?year=<?=$next_year;?>&month=<?=$next;?>">Next</a>
             </div>
             
             <!-- 萬年曆本身 -->
@@ -188,39 +200,51 @@
                 <div class="item holiday">六</div>
             </div>
             
-                <?php
-                $counter=0;
-                foreach($dates as $day){
-                    $format=explode("-",$day)[2];
-                    $special_month=date("m", strtotime($day)); // 提取當前日期的月份
-                    $day_of_month=date("d", strtotime($day)); // 提取當前日期的日期
-                    $w=date("w",strtotime($day));
+    <?php
+                
+                
+                $counter = 0;//計數器開始
+                foreach ($dates as $day) {
                     if ($counter % 7 == 0) {
                         echo "<div class='flex'>";
                     }
-                    echo "<div class='";
-                    foreach($special_holidays [$special_month] as $specialday =>$dayname)
-                    if($day!="&nbsp;"){
-                        if(!$isAnnversary){
-                            
-                            if($w==0||$w==6){
-                                echo "item holiday'>$format";
-                            }else{
-                                echo "item workday'>$format";
+                    // 先確認$dates[]是否空白
+                    if ($day != "&nbsp;") {
+                        $isSpecialDay = false;
+                        $spMonth = explode("-", $day)[1];
+                        $format = explode("-", $day)[2];
+                        $w = date("w", strtotime($day));
+                        // 將特殊日子列出
+                        foreach ($specialDays as $specialMonth => $specialDates) {
+                            foreach ($specialDates as $sDate => $name) {
+                                if ($format == $sDate && $spMonth == $specialMonth) {
+                                    echo "<div class='item special'>$format <br> $name</div>";
+                                    $isSpecialDay = true;
+                                    break 2; // 如果找到特殊日期，就跳出兩層foreach迴圈
+                                }
                             }
-                            echo "</div>";
-                        } else {
-                            echo "item'></div>";
                         }
-                        $isAnnversary=false;
+                        // 非特殊節日場合
+                        if (!$isSpecialDay) {
+                            if ($w == 0 || $w == 6) {
+                                echo "<div class='item holiday'>$format</div>";
+                            } else {
+                                echo "<div class='item workday'>$format</div>";
+                            }
                         }
+                    // $dates[]空白
+                    } else {
+                        echo "<div class='item'></div>";
+                    }
                     $counter++; // 計數器遞增
                     if ($counter % 7 == 0) {
                         echo "</div>"; // 每七天換一行
                     }
-                    
                 }
-                ?>
+
+        
+
+    ?>
     </div>
     
 </body>
