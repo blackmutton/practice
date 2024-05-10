@@ -70,7 +70,41 @@
             <div class="item workday">五</div>
             <div class="item workday">六</div>
             <?php
-            
+            $counter=0;
+            foreach($dates as $day){
+                if($counter%7==0){
+                    echo "<div class='flex'>";
+                }
+                if($day!="&nbsp;"){
+                    $date=explode("-",$day)[2];
+                    $w=date("w",strtotime($day));
+                    $isspeical=false;
+                    $spmonth=explode("-",$day)[1];
+                    foreach($specialDays as $specialMonth => $array){
+                        foreach($array as $specialDay =>$name){
+                            if($date==$specialDay&&$spmonth=$specialMonth){
+                                echo "<div class='item special'>$date<br>$name</div>";
+                                $isspeical=true;
+                                break 2;
+                            }
+                        }
+                        
+                    }
+                    if(!$isspeical){
+                        if($w==0||$w==6){
+                            echo "<div class='item holiday'>$day</div>";
+                        }else{
+                            echo "<div class='item workday'>$day</div>";
+                        }
+                    }
+                }else{
+                    echo "<div class='item'></div>";
+                }
+                $counter++;
+                if($counter%7==0){
+                    echo "</div>";
+                }
+            }
             ?>
         </div>
     </div>
