@@ -70,7 +70,7 @@
             <!-- 月份連結 -->
             <div class="nav poetsen-one-regular">
                 <a href="spcalendar.php?year=<?=$prev_year;?>&month=<?=$prev;?>">Previous</a>
-                <?=$year;?>年<?=$month;?>月
+                <?=$year;?>年<?=str_pad($month,2,'0',STR_PAD_LEFT);?>月
                 <a href="spcalendar.php?year=<?=$next_year;?>&month=<?=$next;?>">Next</a>
             </div>
             
