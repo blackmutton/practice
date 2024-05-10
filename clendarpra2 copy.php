@@ -7,122 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@300&family=Freeman&family=Jaro:opsz@6..72&family=Jersey+25+Charted&family=Poetsen+One&display=swap" rel="stylesheet">
-    <style>
-        *{
-            box-sizing:border-box;
-            /* overflow:hidden; */
-        }
-        body {
-	    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	    background-size: 400% 400%;
-	    height: 100vh;
-        margin:auto;
-        }
-
-
-        .container{
-            width:1000px;
-            /* height:90vh; */
-            /* background-color:grey; */
-            margin:auto;
-            padding-top:20px;
-            text-align:center;
-        }
-        .poetsen-one-regular {
-            font-family: "Poetsen One", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-        /* 表單月份欄位調整 */
-        .month{
-            margin:auto;
-            width:75%;
-            height:20px;
-            text-align:center;
-            margin-bottom:10px;
-        }
-        .nav{
-            margin:auto;
-            width:75%;
-            display:flex;
-            justify-content:space-around;
-            margin-bottom:10px;
-        }
-        
-        .content{
-            margin:auto;
-            width:75%;
-            height:100%;
-            border:3px white double;
-            background:linear-gradient(rgba(255, 255, 255, 0.5), transparent);
-            
-        }
-        .flex{
-            width:100%;
-            height:14%;
-            /* background-color:lightpink; */
-            margin:auto;
-            display:flex;
-            flex-direction:row;
-            flex-wrap:wrap;
-            /* border:1px black solid; */
-            justify-content:space-around;
-            align-items:center;
-            padding:15px 0;
-
-        }
-        .item{
-            width:70px;
-            height:70px;
-            /* background-color:lightblue; */
-            border:1px black dotted;
-            
-            display:flex;
-            align-items:center;
-            justify-content:space-around;
-            
-            border-radius:100%;
-            background:linear-gradient(to bottom right, #abe6f5 50%, white 50%);
-            transition:.3s;
-            font-size:24px;
-            box-shadow:2px 4px #068a71;
-        }
-        .holiday{
-            color:red;
-            background-color:lightpink;
-            border:3px dotted red;
-            background:linear-gradient(to bottom right, lightpink 50%, white 50%);
-            box-shadow:2px 4px #9c5656;
-        }
-        .workday{
-            color:black;
-            border:3px double black;
-            background:linear-gradient(to bottom right, lightgreen 50%, white 50%);
-            box-shadow:2px 4px green;
-        }
-        .item:hover{
-            transform:scale(1.3);
-            z-index:10;
-            transition:.3s;
-            color:#031085;
-            font-size:x-large;
-            cursor: url('./images/marcille.ico'),pointer;
-        }
-        .special{
-            font-size:12px;
-            color:red;
-            background:linear-gradient(to bottom right, yellow 50%, white 50%);
-            box-shadow:2px 4px #a68e07;
-        }
-        .special:hover{
-            transform:scale(1.3);
-            z-index:10;
-            transition:.3s;
-            color:#031085;
-            font-size:14px;
-            cursor: url('./images/marcille.ico'),pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
@@ -240,9 +125,7 @@
                     if ($counter % 7 == 0) {
                         echo "</div>"; // 每七天換一行
                     }
-                }
-
-        
+                }       
 
     ?>
     </div>
