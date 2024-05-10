@@ -16,6 +16,8 @@
         <div class="month">
             <form action="" method="get" class="poetsen-one-regular">
             
+                <label for="year">Year：</label>
+                <input type="number" name="year" id="year" value="<?=date("Y");?>" style="width:70px">
                 <label for="month">Month：</label>
                 <input type="number" name="month" id="month" value="<?=date("m");?>" min="1" max="12">
                 <input type="submit" value="submit">
