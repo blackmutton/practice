@@ -67,9 +67,9 @@
             ?>
             <!-- 月份連結 -->
             <div class="nav poetsen-one-regular">
-                <a href="clendarpra2.php?year=<?=$prev_year;?>&month=<?=$prev;?>">Previous</a>
+                <a href="spcalendar.php?year=<?=$prev_year;?>&month=<?=$prev;?>">Previous</a>
                 <?=$year;?>年<?=$month;?>月
-                <a href="clendarpra2.php?year=<?=$next_year;?>&month=<?=$next;?>">Next</a>
+                <a href="spcalendar.php?year=<?=$next_year;?>&month=<?=$next;?>">Next</a>
             </div>
             
             <!-- 萬年曆本身 -->
