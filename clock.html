@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+    }
+
+    body {
+      background-color: palegoldenrod;
+    }
+
+    .clock {
+      width: 500px;
+      height: 500px;
+      background: rgb(192, 214, 255);
+      margin: auto;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -85%);
+    }
+
+    .text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, 190%);
+      text-align: center;
+      font-size: 50px;
+      color: rgb(36, 54, 94);
+    }
+
+    .hour {
+      width: 20%;
+      height: 10px;
+      background: rgb(67, 86, 150);
+      position: absolute;
+      left: 30%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    .minute {
+      width: 40%;
+      height: 10px;
+      background: white;
+      position: absolute;
+      left: 10%;
+      top: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+
+    .second {
+      width: 45%;
+      height: 4px;
+      background: rgb(189, 140, 36);
+      position: absolute;
+      left: 5%;
+      top: calc(50% - 2px);
+      border-radius: 5px;
+      transform-origin: right center;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="clock">
+    <div class="hour"></div>
+    <div class="minute"></div>
+    <div class="second"></div>
+  </div>
+  <br />
+  <div class="text">00:00:00</div>
+
+  <script>
+    const nowHour = document.querySelector(".hour");
+    const nowMinute = document.querySelector(".minute");
+    const nowSecond = document.querySelector(".second");
+    const text = document.querySelector(".text");
+
+    const clock = () => {
+      const date = new Date();
+
+      const hour = date.getHours();
+      const minute = date.getMinutes();
+      const second = date.getSeconds();
+
+      // nowHour.style.transform = `rotate(${hour * 30 + 90}deg)`;
+      // nowMinute.style.transform = `rotate(${minute * 6 + 90}deg)`;
+      // nowSecond.style.transform = `rotate(${second * 6 + 90}deg)`;
+      // text.innerText = `${hour.toString().padStart(2, "0")}:${minute
+      //   .toString()
+      //   .padStart(2, "0")}:${second.toString().padStart(2, "0")}`;
+
+      $(".hour").css("transform", `rotate(${hour * 30 + 90}deg)`);
+      $(".minute").css("transform", `rotate(${minute * 6 + 90}deg)`);
+      $(".second").css("transform", `rotate(${second * 6 + 90}deg)`);
+      $(".text").text(
+        `${hour.toString().padStart(2, "0")}:${minute
+          .toString()
+          .padStart(2, "0")}:${second.toString().padStart(2, "0")}`
+      );
+    };
+
+    setInterval(clock, 1000);
+    clock();
+  </script>
+</body>
+
+</html>
